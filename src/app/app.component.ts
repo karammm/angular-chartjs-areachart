@@ -10,25 +10,25 @@ import { Color, Label } from 'ng2-charts';
 export class AppComponent {
   public lineChartData: ChartDataSets[] = [
     {
-      data: [65, 49, 80, 84, 56, 65, 100],
+      data: [20, 75, 30, 45, 50, 15, 85],
       label: 'Series A',
     },
   ];
 
   public lineChartLabels: Label[] = [
-    'mon',
-    'tue',
-    'wed',
-    'thru',
-    'fri',
-    'sat',
-    'sun',
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fri',
+    'Sat',
+    'Sun',
   ];
 
   public lineChartOptions: ChartOptions & { annotation: any } = {
     layout: {
       padding: {
-        left: 24,
+        left: 4,
       },
     },
     responsive: true,
@@ -47,7 +47,7 @@ export class AppComponent {
         {
           offset: true,
           ticks: {
-            padding: 12,
+            padding: 10,
             maxTicksLimit: 7,
             maxRotation: 0,
             minRotation: 0,
@@ -84,17 +84,20 @@ export class AppComponent {
           position: 'left',
           offset: false,
           ticks: {
-            padding: 10,
+            padding: 0,
             autoSkip: true,
             maxTicksLimit: 8,
             callback: function (value: any, index, values) {
-              return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+              return (
+                value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '%'
+              );
             },
           },
           gridLines: {
             display: true,
-            drawBorder: false,
-            drawTicks: true,
+          drawBorder: false,
+          offsetGridLines: true,
+          borderDash: [5, 5], 
           },
         },
       ],
@@ -106,11 +109,10 @@ export class AppComponent {
       display: false,
     },
   };
-
   public lineChartColors: Color[] = [
     {
       borderColor: '#6200ea',
-      backgroundColor: '#f1e9fd',
+      // backgroundColor: 'rgba(3,0,0,.1)',
     },
   ];
 
